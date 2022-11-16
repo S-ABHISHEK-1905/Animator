@@ -1,6 +1,7 @@
 # Animator
 
 ## Aim:
+To develop a animator using unity.
 
 ## Algorithm:
 ### Step 1: Download 2 crouch idle from maximo 3d. Drag it and drop it in unity asset.
@@ -20,7 +21,72 @@
 ### Step 15: In blend tree, in blend type choose (2D Freedom Directional), parameter (InputX, InputY) , one crouch (0,-1,1) and walking (1,0,1). Bring the camera under the player 
 
 ## Program:
+```
+struct Node
+{
+   char data;
+   struct Node *next;
+}*front=NULL,*rear=NULL;
+void enqueue(char data)
+{
+ struct Node *newNode;
+  newNode=(struct Node*)malloc(sizeof(struct Node));
+  newNode->data=data;
+  newNode->next=NULL;
+  if(front==NULL)
+  {
+    front=rear=newNode;
+  }
+  else
+  {
+   rear->next=newNode;
+   rear=newNode;
+   }
+}
+void display()
+{
+if(front==NULL)
+{
+printf("queue is empty\n");
+}
+else
+{
+ printf("queue elements:\n");
+ struct Node *temp=front;
+ while(temp->next!=NULL)
+ {
+  printf("%c\n",temp->data);
+  temp=temp->next;
+ }
+ printf("%c\n",temp->data);
+ }
+ 
+
+}
+void dequeue()
+{
+if(front==NULL)
+printf("Queue is Empty!!!\n");
+else
+{
+struct Node *temp=front;
+front=front->next;
+free(temp);
+}
+}
+void peek()
+{
+printf("peek:%c\n",front->data);
+}
+```
 
 ## Output:
+### CROUCH:
+![image](https://user-images.githubusercontent.com/66360846/202152223-37904c1f-487f-4ea3-a9d7-566bd916fe1b.png)
+
+### WALK:
+![image](https://user-images.githubusercontent.com/66360846/202152147-24f33439-82a6-44b9-857c-d5bed6ffb00c.png)
+
 
 ## Result:
+Animator using unity is developed successfully.
