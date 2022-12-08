@@ -22,61 +22,31 @@ To develop a animator using unity.
 
 ## Program:
 ```
-struct Node
-{
-   char data;
-   struct Node *next;
-}*front=NULL,*rear=NULL;
-void enqueue(char data)
-{
- struct Node *newNode;
-  newNode=(struct Node*)malloc(sizeof(struct Node));
-  newNode->data=data;
-  newNode->next=NULL;
-  if(front==NULL)
-  {
-    front=rear=newNode;
-  }
-  else
-  {
-   rear->next=newNode;
-   rear=newNode;
-   }
-}
-void display()
-{
-if(front==NULL)
-{
-printf("queue is empty\n");
-}
-else
-{
- printf("queue elements:\n");
- struct Node *temp=front;
- while(temp->next!=NULL)
- {
-  printf("%c\n",temp->data);
-  temp=temp->next;
- }
- printf("%c\n",temp->data);
- }
- 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-}
-void dequeue()
+public class IdleToCruch : MonoBehaviour
 {
-if(front==NULL)
-printf("Queue is Empty!!!\n");
-else
-{
-struct Node *temp=front;
-front=front->next;
-free(temp);
-}
-}
-void peek()
-{
-printf("peek:%c\n",front->data);
+    public Animator animator;
+    public float InputX;
+    public float InputY;
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = this.gameObject.GetComponent<Animator>();
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        InputX = Input.GetAxis("Horizontal");
+        InputY = Input.GetAxis("Vertical");
+        animator.SetFloat("InputX", InputX);
+        animator.SetFloat("InputY", InputY);
+
+    }
 }
 ```
 
